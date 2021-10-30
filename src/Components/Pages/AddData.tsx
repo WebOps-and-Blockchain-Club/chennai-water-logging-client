@@ -6,6 +6,9 @@ interface Probs {}
 export const AddData = (probs: Probs) => {
   const [filelist , setFilelist] = React.useState();
   const [latitude , setLatitude] = React.useState(0);
+  const [longitude , setLongitude] = React.useState(0);
+ 
+  const [error , setError] = React.useState<any>()
   const handleImageUpload = ( e : any) =>{
       setFilelist(e.target.files[0])
   }
@@ -14,18 +17,21 @@ export const AddData = (probs: Probs) => {
     e.preventDefault();
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition((position) => {
-        console.log(position.coords.latitude)
+        console.log(navigator)
         setLatitude(position.coords.latitude)
-      });
+        setLongitude(position.coords.longitude)
+      },err => setError(err.message));
+    }else{
+      setLatitude(100000)
     }
   }
-  console.log(filelist)
-
+ 
         return(
           <form >
         <label>Geo Location</label>
         <button onClick={getGeolocation}>Get location</button>
-        <label>{latitude}</label>
+        <label>Latitude : {latitude}  Longitude : {longitude}</label>
+        <label>{error}</label>
         <label>Flood depth</label>
         <input name="address" />
         <label>Image to support the request</label>
