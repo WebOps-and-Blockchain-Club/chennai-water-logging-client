@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import { AddData } from "./Components/Pages/AddData";
-import { Dashboard } from "./Components/Pages/AdminDashboard";
+import PasswordForm from "./Components/Pages/Admin/PasswordForm";
 import { DisplayData } from "./Components/Pages/DisplayData";
 
 function App() {
@@ -9,7 +9,9 @@ function App() {
     <Router>
       <Route exact path="/" component={AddData} />
       <Route exact path="/data/:id" component={DisplayData} />
-      <Route exact path="/dashboard" component={Dashboard} />
+      <Route exact path="/dashboard">
+        < PasswordForm  />
+        </Route>
     </Router>
   );
 }
