@@ -66,6 +66,8 @@ export type GetDataByIdQuery = { getDataByID: { depth: string, location: string,
 
 export type GetDatasQueryVariables = Exact<{
   Password: Scalars['String'];
+  skip: Scalars['Float'];
+  limit: Scalars['Float'];
 }>;
 
 
@@ -122,8 +124,8 @@ export function refetchGetDataByIdQuery(variables?: GetDataByIdQueryVariables) {
       return { query: GetDataByIdDocument, variables: variables }
     }
 export const GetDatasDocument = gql`
-    query getDatas($Password: String!) {
-  getDatas(Password: $Password) {
+    query getDatas($Password: String!, $skip: Float!, $limit: Float!) {
+  getDatas(Password: $Password, skip: $skip, limit: $limit) {
     count
     datas {
       location
@@ -147,6 +149,8 @@ export const GetDatasDocument = gql`
  * const { data, loading, error } = useGetDatasQuery({
  *   variables: {
  *      Password: // value for 'Password'
+ *      skip: // value for 'skip'
+ *      limit: // value for 'limit'
  *   },
  * });
  */

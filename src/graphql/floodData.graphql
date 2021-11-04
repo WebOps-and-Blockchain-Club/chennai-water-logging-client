@@ -7,8 +7,8 @@ query getDataByID($ID : String!){
 
 }
 
-query getDatas($Password : String!){
-  getDatas(Password : $Password){
+query getDatas($Password : String!,$skip : Float! , $limit : Float!){
+  getDatas(Password : $Password , skip : $skip,limit : $limit){
     count,
     datas{
       location,

@@ -3,23 +3,34 @@ p {
   font-family: Lato;
 }
 
+
 table {
   width: 100%;
   border-collapse: collapse;
   position: relative;
+  align-content: center;
+  justify-content: center;
+}
+table, th, td {
+  border: 1px solid black;
+  border-collapse: collapse;
 }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 65%;
+}
 
 
 thead tr th {
   font-weight: 500;
-  text-align: left;
   background-color: green;
+  align-content: center;
+  justify-content: center;
 }
 
-tbody tr:nth-child(even) {
-  background-color: #fafafa;
-}
 
 th,
 td {
@@ -27,8 +38,34 @@ td {
   overflow-wrap: break-word;
 }
 
-.pagination-bar {
+tbody tr td{
+    font-weight: 500;
+    text-align: center;
+  }
+
+.pagination {
+  display: inline-block;
+  justify-content: space-between;
   width: 100%;
   display: flex;
   justify-content: center;
+  margin: 15px;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+.pagination a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+
+.arrow{
+  font-size: 20px;
 }

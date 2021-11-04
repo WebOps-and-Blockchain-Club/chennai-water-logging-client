@@ -21,7 +21,7 @@ export const DisplayData = (probs: Probs) => {
       <tbody>
           <tr>
               <td>Location </td>
-              <td><a href={`https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}`} target="_blank">Check Location</a>
+              <td><a href={`https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}`} target="_blank" rel="noreferrer">Check Location</a>
          </td>
           </tr>
           <tr>
@@ -30,7 +30,7 @@ export const DisplayData = (probs: Probs) => {
           </tr>
           <tr>
               <td>Image Uploaded</td>
-              <td><img src={data?.getDataByID.image} height={'250px'} width={'400px'}></img></td>
+              <td><img src={data?.getDataByID.image} height={'250px'} width={'400px'} alt=""/></td>
           </tr>
       </tbody>
   </table>

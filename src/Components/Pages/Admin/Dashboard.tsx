@@ -1,33 +1,27 @@
 import React, { useState, useMemo } from 'react';
 import { useGetDatasQuery } from '../../../generated/graphql';
-import Pagination from '../../../utils/Pagination';
-import '../../../Styles/./styles.css';
+import '../../../Styles/styles.css';
 
-let PageSize = 10;
-
-interface location {
-  latitude : number,
-  longitude : number,
-  location : string
-}
+let PageSize = 1;
 
 interface Props{
   password : string
 }
 export default function Dashboard(props : Props) {
   const [currentPage, setCurrentPage] = useState(1);
-  const {data , error , loading , refetch} = useGetDatasQuery({variables:{
+  const {data,error,loading} = useGetDatasQuery({variables:{
     Password : props.password,
+    skip :(currentPage - 1)*1 ,
+    limit : 1
   }})
+  if(!data || loading) return(<div>Loading........</div>)
+  const pageCount = Math.ceil(data?.getDatas.count!/PageSize);
+  const pages = Array(pageCount).fill(1).map((x, y) => x + y)
 
-   const currentTableData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    return data?.getDatas.datas.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage]);
-  
-  if(!data) return(<div>Loading........</div>)
-  
+  const handleClick=(index : number)=>{
+    setCurrentPage(index)
+  }
+
 
   return (
     <>
@@ -41,7 +35,7 @@ export default function Dashboard(props : Props) {
           </tr>
         </thead>
         <tbody>
-          {currentTableData?.map((item,index) : any => {
+          {data?.getDatas.datas.map((item,index) : any => {
             let location ;
            if(item.location){
             location = JSON.parse(item.location);
@@ -50,21 +44,34 @@ export default function Dashboard(props : Props) {
               <tr>
                 <td>{index + 1}</td>
                 <td>{item.depth}</td>
-                <td><a href={`https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}`} target="_blank">Check Location</a>
+                <td><a href={`https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}`} target="_blank" rel='noreferrer'>Check Location</a>
               </td>
-                <td><img src={item.image} height={"250px"} width={"400px"}/></td>
+                <td><img src={item.image} height={"250px"} width={"400px"} className='center' alt=""/></td>
               </tr>
             );
           })}
         </tbody>
       </table>
-      <Pagination
-        className="pagination-bar"
-        currentPage={currentPage}
-        totalCount={data?.getDatas.datas?.length}
-        pageSize={PageSize}
-        onPageChange={(page : any) => setCurrentPage(page)}
-      />
+
+      <div className="pagination">
+      <a href="#" onClick={()=>{
+        if(currentPage > 1){
+          setCurrentPage(prev => prev-1)
+        }
+      }} className='arrow'>&laquo;</a>
+      {
+        pages.map(number => {
+          return(
+            <a href="#" onClick={(e)=>{handleClick(number)}}>{number}</a>
+          )
+        })
+      }
+      <a href="#" className='arrow' onClick={()=>{
+        if(currentPage < data.getDatas.count){
+          setCurrentPage(prev => prev+1)
+        }}} >&raquo;</a>
+    </div>
+
     </>
   );
 }

@@ -4,6 +4,7 @@ import Dashboard from './Dashboard';
 const PasswordForm = () =>{
     const [ password,setPassword] = useState("");
     const [getData , setGetData] = useState(false);
+    console.log(password)
     return (
       <>
         <form>

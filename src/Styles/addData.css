@@ -2,6 +2,8 @@ body{
     background: lavender;
     padding: 20px;
  }
+
+
 form {
     background: white;
     border: 1px solid #dedede;
@@ -11,10 +13,14 @@ form {
     margin: 0 auto;
     max-width: 500px;
     padding: 35px 50px;
-    /* align-items: center;
-    justify-content: center; */
   }
 
+  .heading{
+
+    margin: 20px;
+    padding: 10px;
+    text-align: center;
+   }
 
   input  {
     border: 1px solid #d9d9d9;
@@ -58,4 +64,5 @@ form {
     padding: 5px;
     width: 30%;
     border-radius: 10px;
+    float: right;
   }
