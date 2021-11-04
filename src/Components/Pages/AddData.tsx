@@ -52,11 +52,15 @@ export const AddData = (probs: Probs) => {
   }
         return(
           <form onSubmit={handleSubmit}>
+            <h1 className="heading">FLOOD COLLECTION</h1>
           <label>Geo Location</label>
+          <div style={{'width' : '100%'}}>
+          <label style={{'float' : 'left','marginBottom' : '5px','padding' : '5px'}}>{location ? 
+           <a href={`https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}`} target="_blank" rel="noreferrer">Check Location</a> : null}</label>
+          
           <button onClick={getGeolocation} className="locationButton">Get location</button>  
-          <label>{location ? 
-           <a href={`https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}`} target="_blank">Check Location</a> : null}</label>
-          <label>Flood depth</label>
+          </div>
+         <label>Flood depth</label>
           <select id="depth" onChange={(e : any)=> setDepth(e.target.value)}>
             <option value="0-5">0-5 cm</option>
             <option value="5-10">5 -10 cm</option>
