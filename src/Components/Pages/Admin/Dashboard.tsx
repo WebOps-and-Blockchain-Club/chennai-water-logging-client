@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState} from 'react';
 import { useGetDatasQuery } from '../../../generated/graphql';
 import '../../../Styles/styles.css';
 
@@ -9,7 +9,7 @@ interface Props{
 }
 export default function Dashboard(props : Props) {
   const [currentPage, setCurrentPage] = useState(1);
-  const {data,error,loading} = useGetDatasQuery({variables:{
+  const {data,loading} = useGetDatasQuery({variables:{
     Password : props.password,
     skip :(currentPage - 1)*1 ,
     limit : 1
@@ -21,7 +21,6 @@ export default function Dashboard(props : Props) {
   const handleClick=(index : number)=>{
     setCurrentPage(index)
   }
-
 
   return (
     <>
@@ -41,12 +40,12 @@ export default function Dashboard(props : Props) {
             location = JSON.parse(item.location);
            }
             return (
-              <tr>
+              <tr key={item.location}>
                 <td>{index + 1}</td>
                 <td>{item.depth}</td>
                 <td><a href={`https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}`} target="_blank" rel='noreferrer'>Check Location</a>
               </td>
-                <td><img src={item.image} height={"250px"} width={"400px"} className='center' alt=""/></td>
+                <td><img src={`${process.env.REACT_APP_BACKEND_URL}/public/images/${item.image}.jpeg`} height={"250px"} width={"400px"} className='center' alt=""/></td>
               </tr>
             );
           })}
@@ -54,7 +53,7 @@ export default function Dashboard(props : Props) {
       </table>
 
       <div className="pagination">
-      <a href="#" onClick={()=>{
+      <a href="#/" onClick={()=>{
         if(currentPage > 1){
           setCurrentPage(prev => prev-1)
         }
@@ -62,11 +61,11 @@ export default function Dashboard(props : Props) {
       {
         pages.map(number => {
           return(
-            <a href="#" onClick={(e)=>{handleClick(number)}}>{number}</a>
+            <a href="#/" onClick={(e)=>{handleClick(number)}} key={number}>{number}</a>
           )
         })
       }
-      <a href="#" className='arrow' onClick={()=>{
+      <a href="#/" className='arrow' onClick={()=>{
         if(currentPage < data.getDatas.count){
           setCurrentPage(prev => prev+1)
         }}} >&raquo;</a>

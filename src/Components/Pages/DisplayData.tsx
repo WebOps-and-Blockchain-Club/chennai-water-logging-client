@@ -10,10 +10,12 @@ export const DisplayData = (probs: Probs) => {
   const {data,error , loading} = useGetDataByIdQuery({variables:{
     ID : id
   }})
-  console.log(error?.message,loading)
   let location;
-  if(data) {location = JSON.parse(data?.getDataByID?.location!);}
+ if(data) {location = JSON.parse(data?.getDataByID?.location!);}
+ 
   if(!data) return(<div>Loading........</div>)
+  console.log(`${process.env.REACT_APP_BACKEND_URL}/public/images/${data!.getDataByID.image}`)
+  
   return(
     <div className="displayData-div">
       <div className="displaydata-heading">Your Submission</div>
@@ -30,10 +32,10 @@ export const DisplayData = (probs: Probs) => {
           </tr>
           <tr>
               <td>Image Uploaded</td>
-              <td><img src={data?.getDataByID.image} height={'250px'} width={'400px'} alt=""/></td>
+              <td><img src={`${process.env.REACT_APP_BACKEND_URL}/public/images/${data.getDataByID.image}`} height={'250px'} width={'400px'} alt=""/></td>
           </tr>
       </tbody>
-  </table>
+  </table> 
 
     </div>
   );
