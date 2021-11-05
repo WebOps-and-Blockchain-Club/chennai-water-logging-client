@@ -45,7 +45,7 @@ export default function Dashboard(props : Props) {
                 <td>{item.depth}</td>
                 <td><a href={`https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}`} target="_blank" rel='noreferrer'>Check Location</a>
               </td>
-                <td><img src={`${process.env.REACT_APP_BACKEND_URL}/public/images/${item.image}.jpeg`} height={"250px"} width={"400px"} className='center' alt=""/></td>
+                <td><img src={`${process.env.REACT_APP_BACKEND_URL}/images/${item.image}`} height={"250px"} width={"400px"} className='center' alt=""/></td>
               </tr>
             );
           })}
