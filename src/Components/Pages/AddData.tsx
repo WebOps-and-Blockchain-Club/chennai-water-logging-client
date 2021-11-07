@@ -39,8 +39,12 @@ export const AddData = (probs: Probs) => {
   const [addData] = useAddDataMutation();
   
   const handleSubmit = (e : any) =>{
-    console.log("depth",depth , location)
     e.preventDefault();
+    if(!location){
+      setError("Geo location is not entered . Click on the Get location Button")
+      return
+    }
+   
     addData({
       variables : {
         location : JSON.stringify(location),
@@ -49,14 +53,21 @@ export const AddData = (probs: Probs) => {
       }
     }).then(res =>  { if(res.data?.addData) setId(res.data?.addData!)})
     .catch(err => setError(err.message))
-    
+    setError("")
+  }
+
+  const copyLink = (e : any) =>{
+
+    e.preventDefault()
+    navigator.clipboard.writeText(`${window.location.href}data/${id}`)
+
   }
         return(
           <form onSubmit={handleSubmit}>
             <h3 className="heading">FLOOD DATA COLLECTION</h3>
             {
               error ? <div className="alert">
-              <span className="closebtn">&times;</span> 
+               
               {error}
             </div> : null
             }
@@ -79,7 +90,8 @@ export const AddData = (probs: Probs) => {
           <button type="submit" className="submitButton">Submit</button>
           <label>{ id ? "To view your submission visit this link": null} </label>
           {
-            id? <div style={{'maxWidth':"200px"}}><a href={`/data/${id}`} >{`${window.location.href}data/${id}`}</a></div> : null
+            id? <div style={{'width':'100%'}}><a href={`/data/${id}`} >Click Here</a>
+            <button onClick={copyLink} className="locationButton">Copy link</button></div> : null
           }
           </form>
         )
