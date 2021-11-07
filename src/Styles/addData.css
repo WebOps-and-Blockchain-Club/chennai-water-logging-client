@@ -11,15 +11,16 @@ form {
     flex-direction: column;
     justify-content: space-around;
     margin: 0 auto;
-    max-width: 500px;
-    padding: 35px 50px;
+    width: auto;
+    max-width: 600px;
+    padding: 20px 50px;
   }
 
   .heading{
 
+    font-size: 25px !important;
     margin: 20px;
     padding: 10px;
-    text-align: center;
    }
 
   input  {
@@ -55,14 +56,35 @@ form {
   }
 
   select {
-    margin-bottom: 5px;
+    margin-bottom: 20px;
     padding: 5px;
   }
 
   .locationButton{
     margin-bottom: 5px;
     padding: 5px;
-    width: 30%;
+    width: auto;
     border-radius: 10px;
     float: right;
+  }
+
+  .alert {
+    padding: 20px;
+    background-color: #f44336;
+    color: white;
+  }
+  
+  .closebtn {
+    margin-left: 15px;
+    color: white;
+    font-weight: bold;
+    float: right;
+    font-size: 22px;
+    line-height: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .closebtn:hover {
+    color: black;
   }

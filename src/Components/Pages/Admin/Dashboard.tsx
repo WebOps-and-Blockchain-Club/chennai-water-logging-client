@@ -1,29 +1,46 @@
 import React, { useState} from 'react';
+import { useHistory } from 'react-router-dom';
 import { useGetDatasQuery } from '../../../generated/graphql';
 import '../../../Styles/styles.css';
 
-let PageSize = 1;
+let PageSize = 10;
 
-interface Props{
-  password : string
-}
-export default function Dashboard(props : Props) {
+
+export default function Dashboard() {
   const [currentPage, setCurrentPage] = useState(1);
+  const [password , setPassword] = useState("");
+  React.useEffect(()=>{
+    if(localStorage.getItem("password")){
+      setPassword(localStorage.getItem("password")!)
+    }
+  },[])
+ const history = useHistory();
   const {data,loading} = useGetDatasQuery({variables:{
-    Password : props.password,
-    skip :(currentPage - 1)*1 ,
-    limit : 1
+    Password : password,
+    skip :(currentPage - 1)*10,
+    limit : 10
   }})
+  console.log(data)
   if(!data || loading) return(<div>Loading........</div>)
   const pageCount = Math.ceil(data?.getDatas.count!/PageSize);
   const pages = Array(pageCount).fill(1).map((x, y) => x + y)
 
+
   const handleClick=(index : number)=>{
     setCurrentPage(index)
+    
   }
 
   return (
     <>
+      <div style={{'width':'100%'}}>
+      <button style={{'float':'right','margin':'10px','padding':'5px'}}
+      onClick={()=>{
+        localStorage.removeItem('password');
+        history.replace('/dashboard')
+      }}
+      >Logout</button>
+      </div>
       <table className='admin-displayData-div'>
         <thead>
           <tr>
@@ -40,7 +57,7 @@ export default function Dashboard(props : Props) {
             location = JSON.parse(item.location);
            }
             return (
-              <tr key={item.location}>
+              <tr key={item.image}>
                 <td>{index + 1}</td>
                 <td>{item.depth}</td>
                 <td><a href={`https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}`} target="_blank" rel='noreferrer'>Check Location</a>
@@ -66,7 +83,7 @@ export default function Dashboard(props : Props) {
         })
       }
       <a href="#/" className='arrow' onClick={()=>{
-        if(currentPage < data.getDatas.count){
+        if(currentPage < data.getDatas.count/10){
           setCurrentPage(prev => prev+1)
         }}} >&raquo;</a>
     </div>

@@ -7,7 +7,7 @@ interface Probs {}
 export const AddData = (probs: Probs) => {
   const [filelist , setFilelist] = React.useState();
   const [location , setLocation] = React.useState<any >();
- 
+  const [error , setError] = React.useState('')
   const [depth , setDepth] = React.useState<string>("")
   const [id , setId] = React.useState("");
 
@@ -31,7 +31,7 @@ export const AddData = (probs: Probs) => {
         coords.location = "Location";
         setLocation(coords)
 
-      });
+      }, (err) => setError(err.message));
     }
   
   }
@@ -48,11 +48,18 @@ export const AddData = (probs: Probs) => {
         depth 
       }
     }).then(res =>  { if(res.data?.addData) setId(res.data?.addData!)})
+    .catch(err => setError(err.message))
     
   }
         return(
           <form onSubmit={handleSubmit}>
-            <h1 className="heading">FLOOD COLLECTION</h1>
+            <h3 className="heading">FLOOD DATA COLLECTION</h3>
+            {
+              error ? <div className="alert">
+              <span className="closebtn">&times;</span> 
+              {error}
+            </div> : null
+            }
           <label>Geo Location</label>
           <div style={{'width' : '100%'}}>
           <label style={{'float' : 'left','marginBottom' : '5px','padding' : '5px'}}>{location ? 
@@ -61,18 +68,18 @@ export const AddData = (probs: Probs) => {
           <button onClick={getGeolocation} className="locationButton">Get location</button>  
           </div>
          <label>Flood depth</label>
-          <select id="depth" onChange={(e : any)=> setDepth(e.target.value)}>
+          <select id="depth" onChange={(e : any)=> setDepth(e.target.value)} required>
             <option value="0-5">0-5 cm</option>
             <option value="5-10">5 -10 cm</option>
             <option value="10-15">10-15 cm</option>
             <option value="15">15+ cm</option>
           </select>
           <label>Image to support the request</label>
-          <input type="file" accept="image/*" capture="environment" onChange={handleImageUpload}/>
+          <input type="file" accept="image/*" capture="environment" onChange={handleImageUpload} required/>
           <button type="submit" className="submitButton">Submit</button>
           <label>{ id ? "To view your submission visit this link": null} </label>
           {
-            id? <a href={`/data/${id}`}>{`${window.location.href}data/${id}`}</a> : null
+            id? <div style={{'maxWidth':"200px"}}><a href={`/data/${id}`} >{`${window.location.href}data/${id}`}</a></div> : null
           }
           </form>
         )

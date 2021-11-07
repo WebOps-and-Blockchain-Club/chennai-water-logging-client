@@ -1,27 +1,34 @@
 import React, { useState } from 'react'
+import { useHistory } from 'react-router-dom';
 import Dashboard from './Dashboard';
 
 const PasswordForm = () =>{
     const [ password,setPassword] = useState("");
     const [getData , setGetData] = useState(false);
-    console.log(password)
+
+    const history = useHistory();
+    
+    
+      React.useEffect(()=>{
+        if(localStorage.getItem("password")){
+          setPassword(localStorage.getItem("password")!)
+        }
+      },[])
+     
     return (
       <>
-        <form>
-        <label>Enter the Password</label>
-        <input type = "password" value={password} onChange={(e : any)=>{setPassword(e.target.value)}}/>
-        <button onClick={(e : any) => 
-          {
-            e.preventDefault();
-            setGetData(true)
-          }
-          }>Get Data</button>
-      </form>
-      <div style={{"width" : "90%", "margin" : "20px"}}>
-      {
-       getData ? <Dashboard password={password} /> : null
-      }
-      </div>
+        {
+          getData ? null : <form>
+          <label>Enter the Password</label>
+          <input type = "password" value={password} onChange={(e : any)=>{setPassword(e.target.value)}}/>
+          <button onClick={(e : any) => 
+            {
+              localStorage.setItem("password",password)
+              history.push('/submissions')
+            }
+            }>Get Data</button>
+        </form>
+        }
       </>
     )
 }

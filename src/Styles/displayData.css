@@ -1,24 +1,18 @@
-.displayData-div{
-
-    background: white;
-    border: 1px solid #dedede;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 0 auto;
-    max-width: 500px;
-    padding: 35px 50px;
-
+*{
+    margin:  0px;
 }
 
 .displaydata-heading{
-    font-size: 40px;
-    margin: 5px;
+
+    font-size: 35px;
+    margin-bottom: 10px;
     padding: 5px;
+    text-align: center;
 }
 .styled-table {
+    margin-left: auto;
+    margin-right: auto;
     border-collapse: collapse;
-    margin: 25px 0;
     font-size: 0.9em;
     font-family: sans-serif;
     min-width: 400px;
