@@ -26,7 +26,8 @@ export const DisplayData = (probs: Probs) => {
           </tr>
           <tr>
               <td>Flood Depth</td>
-              <td>{data?.getDataByID.depth} cm</td>
+              
+              <td>{Number(data?.getDataByID.depth).toFixed(2)} cm</td>
           </tr>
           <tr>
               <td>Image Uploaded</td>

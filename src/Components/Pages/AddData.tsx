@@ -1,6 +1,7 @@
 import React from "react";
 import { useAddDataMutation } from "../../generated/graphql";
 import "../../Styles/addData.css";
+import Img from '../../assests/image.jpg';
 
 interface Probs {}
 
@@ -79,12 +80,12 @@ export const AddData = (probs: Probs) => {
           <button onClick={getGeolocation} className="locationButton">Get location</button>  
           </div>
          <label>Flood depth</label>
-          <select id="depth" onChange={(e : any)=> setDepth(e.target.value)} required>
-            <option value="0-5">0-5 cm</option>
-            <option value="5-10">5 -10 cm</option>
-            <option value="10-15">10-15 cm</option>
-            <option value="15">15+ cm</option>
-          </select>
+          <div className="rangeDiv">
+            <img src={Img} width={'200px'} height={'400px'} style={{'marginTop':'10%'}}/>
+          <input type={'range'} min="0" max="10" step={'any'} value={depth} onChange={(e : any)=> setDepth(e.target.value)}/>
+          <output className="rangeLabel">{Number(depth).toFixed(2)}</output>
+          </div>
+         
           <label>Image to support the request</label>
           <input type="file" accept="image/*" capture="environment" onChange={handleImageUpload} required/>
           <button type="submit" className="submitButton">Submit</button>
