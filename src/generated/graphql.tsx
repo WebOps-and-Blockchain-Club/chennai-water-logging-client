@@ -22,6 +22,7 @@ export type FloodData = {
   id: Scalars['ID'];
   image: Scalars['String'];
   location: Scalars['String'];
+  time: Scalars['String'];
 };
 
 export type GetFloodDatasOutput = {
@@ -62,7 +63,7 @@ export type GetDataByIdQueryVariables = Exact<{
 }>;
 
 
-export type GetDataByIdQuery = { getDataByID: { depth: string, location: string, image: string } };
+export type GetDataByIdQuery = { getDataByID: { depth: string, location: string, image: string, time: string } };
 
 export type GetDatasQueryVariables = Exact<{
   Password: Scalars['String'];
@@ -89,6 +90,7 @@ export const GetDataByIdDocument = gql`
     depth
     location
     image
+    time
   }
 }
     `;

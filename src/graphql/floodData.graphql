@@ -1,23 +1,23 @@
-query getDataByID($ID : String!){
-  getDataByID(ID : $ID){
+query getDataByID($ID: String!) {
+  getDataByID(ID: $ID) {
     depth
     location
     image
+    time
   }
-
 }
 
-query getDatas($Password : String!,$skip : Float! , $limit : Float!){
-  getDatas(Password : $Password , skip : $skip,limit : $limit){
-    count,
-    datas{
-      location,
-      image,
+query getDatas($Password: String!, $skip: Float!, $limit: Float!) {
+  getDatas(Password: $Password, skip: $skip, limit: $limit) {
+    count
+    datas {
+      location
+      image
       depth
     }
   }
 }
 
-mutation addData($location : String! , $depth : String! , $image : Upload!){
-    addData(location : $location , depth : $depth , image : $image)
+mutation addData($location: String!, $depth: String!, $image: Upload!) {
+  addData(location: $location, depth: $depth, image: $image)
 }

@@ -1,95 +1,56 @@
-body{
-    background: lavender;
-    padding: 20px;
- }
+.main-div {
+  width: 100%;
+  min-height: 100vh;
+  background: lavender;
+  display: flex;
+  align-items: center;
+}
 
+.main-div div {
+  font-size: 18px;
+}
 
-form {
-    background: white;
-    border: 1px solid #dedede;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    margin: 0 auto;
-    width: auto;
-    max-width: 600px;
-    padding: 20px 50px;
-  }
+.heading {
+  font-size: 35px;
+  text-align: center;
+  font-weight: bold;
+}
 
-  .heading{
-    font-size: 25px !important;
-    margin: 20px 0px;
-   }
+.add-data,
+.submission-box {
+  margin: 0 25px;
+  border-radius: 10px;
+  background-color: white;
+  padding: 25px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
 
-  .forminput  {
-    border: 1px solid #d9d9d9;
-    border-radius: 4px;
-    box-sizing: border-box;
-    padding: 10px;
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 5px;
-  }
-  .rangeDiv{
-    display: table;
-    width: 200px !important; 
-  }
- 
+.form-row {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
 
-  input[type="range"] {
-    width: 400px;
-    transform: rotate(-90deg) translate(0, 0);
-    transform-origin: 0 0;
-   -moz-transform: rotate(270deg)
- }
+input[type="range"] {
+  width: 300px;
+  transform: rotate(-90deg) /*translate(0, 0)*/;
+  transform-origin: 0 0;
+  -moz-transform: rotate(270deg);
+}
 
- .rangeLabel{
-  margin-bottom: 10px;
-  font-weight: 600;
- }
+button {
+  border-radius: 10px;
+  padding: 5px 10px;
+  font-size: 18px;
+  background-color: #6976d9;
+  border: none;
+}
 
-
-  label {
-    color: #3d3d3d;
-    display: block;
-    font-family: sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    margin-bottom: 10px;
-    float: inline-start !important;
-  }
- 
-  .submitButton{
-    background-color: #6976d9;
-    color: white;
-    font-family: sans-serif;
-    width: 50%;
-    font-size: 14px;
-    margin: 15px 0px;
-    padding: 5px;
-    border-radius: 10px;
-
-  }
-
-  select {
-    margin-bottom: 20px;
-    padding: 5px;
-  }
-
-  .locationButton{
-    margin-bottom: 5px;
-    padding: 5px;
-    width: auto;
-    border-radius: 10px;
-    float: right;
-  }
-
-  .alert {
-    padding: 20px;
-    background-color: #f44336;
-    color: white;
-    margin-bottom: 10px;
-  }
-  
-
-  
+.error {
+  background-color: #f44336;
+  padding: 10px 20px;
+}
