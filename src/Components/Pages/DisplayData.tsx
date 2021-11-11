@@ -16,25 +16,24 @@ export const DisplayData = (probs: Probs) => {
   if(!data) return(<div>Loading........</div>)
   return(
     <div className="displayData-div">
-      <div className="displaydata-heading">Your Submission</div>
-      <table className="styled-table">
-      <tbody>
-          <tr>
-              <td>Location </td>
-              <td><a href={`https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}`} target="_blank" rel="noreferrer">Check Location</a>
-         </td>
-          </tr>
-          <tr>
-              <td>Flood Depth</td>
-              
-              <td>{Number(data?.getDataByID.depth).toFixed(2)} cm</td>
-          </tr>
-          <tr>
-              <td>Image Uploaded</td>
-              <td><img src={`${process.env.REACT_APP_BACKEND_URL}/images/${data.getDataByID.image}`} height={'250px'} width={'400px'} alt=""/></td>
-          </tr>
-      </tbody>
-  </table> 
+      <div className="displaydata-heading">Your Data</div>
+      
+            <div className="Datadiv">
+            <div className="location-div">
+            <a className={"button2"}href={`https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}`} target="_blank" rel="noreferrer">Location</a>
+            </div>
+        
+             <div className="depth-div">
+             <span className="button2"> Flood Depth  : {Number(Number(data.getDataByID.depth)*180/10).toFixed(2)} cm
+            </span>
+              </div>
+             </div>
+        
+             <div className="img-div">
+              <img src={`${process.env.REACT_APP_BACKEND_URL}/images/${data.getDataByID.image}`} height={'250px'} width={'100%'} alt=""/>
+         
+             </div>
+        
 
     </div>
   );

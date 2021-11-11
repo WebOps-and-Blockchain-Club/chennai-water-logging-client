@@ -9,7 +9,7 @@ export const AddData = (probs: Probs) => {
   const [filelist , setFilelist] = React.useState();
   const [location , setLocation] = React.useState<any >();
   const [error , setError] = React.useState('')
-  const [depth , setDepth] = React.useState<string>("")
+  const [depth , setDepth] = React.useState<string>("0")
   const [id , setId] = React.useState("");
 
   const handleImageUpload = ( e : any) =>{
@@ -81,13 +81,13 @@ export const AddData = (probs: Probs) => {
           </div>
          <label>Flood depth</label>
           <div className="rangeDiv">
-            <img src={Img} width={'200px'} height={'400px'} style={{'marginTop':'10%'}}/>
+          <img src={Img} width={'200px'} height={'400px'} style={{'marginTop':'10%'}}/>
           <input type={'range'} min="0" max="10" step={'any'} value={depth} onChange={(e : any)=> setDepth(e.target.value)}/>
-          <output className="rangeLabel">{Number(depth).toFixed(2)}</output>
           </div>
-         
+          <output className="rangeLabel">{Number(Number(depth)*180/10).toFixed(1)}cm</output>
+          
           <label>Image to support the request</label>
-          <input type="file" accept="image/*" capture="environment" onChange={handleImageUpload} required/>
+          <input className='forminput' type="file" accept="image/*" capture="environment" onChange={handleImageUpload} required/>
           <button type="submit" className="submitButton">Submit</button>
           <label>{ id ? "To view your submission visit this link": null} </label>
           {
