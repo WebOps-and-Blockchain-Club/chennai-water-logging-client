@@ -121,7 +121,7 @@ export const AddData = (probs: Probs) => {
         <div className="sub-heading">Fill the details here</div>
         {error && <div className="error">{error}</div>}
         <div className="form-row">
-          <div>Geo Location</div>
+          <div>Click on the below button to get the location</div>
           {location && (
             <a
               href={`https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}`}
@@ -136,7 +136,7 @@ export const AddData = (probs: Probs) => {
           Get location
         </button>
         <div className="form-row">
-          <div>Flood depth</div>
+          <div>Drag the slider to add the flood depth</div>
           <div style={{ fontWeight: "bold" }}>
             {Number((Number(depth) * 180) / 10).toFixed(1)}cm
           </div>
@@ -153,7 +153,7 @@ export const AddData = (probs: Probs) => {
             required
           />
         </div>
-        <div>Image to support the request</div>
+        <div>Add an image to support the request</div>
         <input
           type="file"
           accept="image/*"
