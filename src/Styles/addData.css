@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 .main-div div {
@@ -19,7 +20,7 @@
 
 .add-data,
 .submission-box {
-  margin: 0 25px;
+  margin: 25px 25px 0;
   border-radius: 10px;
   background-color: white;
   padding: 25px;
@@ -33,7 +34,9 @@
   display: flex;
   width: 100%;
   align-items: center;
-  justify-content: space-between;
+  flex-direction: column;
+  gap: 10px;
+  /* justify-content: space-between; */
 }
 
 input[type="range"] {

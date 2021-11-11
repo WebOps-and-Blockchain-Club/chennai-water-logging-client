@@ -165,6 +165,27 @@ export const AddData = (probs: Probs) => {
           Submit
         </button>
       </form>
+      <div className="add-data" style={{ marginBottom: "25px" }}>
+        <div className="heading" style={{ fontSize: "35px" }}>
+          ABOUT US
+        </div>
+        <div>
+          This platform enables users / public to report details such as flood
+          location and water depth, as well as add photos of flood sites with a
+          description across the Chennai region as frequently as possible. All
+          reports are gathered onto a real-time flood map. The data gathered
+          through this platform aims to improve disaster preparedness and
+          response in communities by gathering, sorting, and presenting data of
+          flooding reports.
+        </div>
+        <div>
+          This Crowd source data, curated through this platform will help to
+          understand the reasons for waterlogging / inundation and help IIT
+          Madras researchers to develop / design remedial measures that may be
+          recommended to GCC, PWD and other relevant Govt. departments for their
+          action.
+        </div>
+      </div>
     </div>
   );
 };
