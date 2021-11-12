@@ -5,7 +5,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
-  align-items: center;
+  align-items: inherit;
   justify-content: center;
   flex-direction: column;
 }
@@ -30,7 +30,7 @@
   flex-direction: column;
   align-items: center;
   gap: 20px;
-  opacity: 90%;
+  opacity: 0.9;
 }
 
 .form-row {
@@ -49,7 +49,7 @@ input[type="range"] {
   -moz-transform: rotate(270deg);
 }
 
-button {
+.main-div button {
   border-radius: 10px;
   padding: 5px 10px;
   font-size: 18px;

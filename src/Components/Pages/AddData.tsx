@@ -115,13 +115,15 @@ export const AddData = (probs: Probs) => {
   return (
     <div className="main-div">
       <form onSubmit={handleSubmit} className="add-data">
-        <div className="heading" style={{ fontSize: "35px" }}>
+        {/* <div className="heading" style={{ fontSize: "35px" }}>
           CHENNAI WATER LOGGING
+        </div> */}
+        <div className="heading" style={{ fontSize: "25px" }}>
+          Fill the details here
         </div>
-        <div className="sub-heading">Fill the details here</div>
         {error && <div className="error">{error}</div>}
         <div className="form-row">
-          <div>Click on the below button to get the location</div>
+          <div>Click on the button below to input location</div>
           {location && (
             <a
               href={`https://www.google.com/maps/search/?api=1&query=${location.latitude},${location.longitude}`}
@@ -141,7 +143,7 @@ export const AddData = (probs: Probs) => {
             {Number((Number(depth) * 180) / 10).toFixed(1)}cm
           </div>
         </div>
-        <div>
+        <div style={{ width: "200px" }}>
           <img src={Img} alt={"person"} width={"200px"} height={"300px"} />
           <input
             type={"range"}
