@@ -2,6 +2,7 @@ import React from "react";
 import { useAddDataMutation } from "../../generated/graphql";
 import "../../Styles/addData.css";
 import Img from "../../assests/image.jpg";
+import MapButton from "../MapButton";
 
 interface Probs {}
 
@@ -188,6 +189,7 @@ export const AddData = (probs: Probs) => {
           action.
         </div>
       </div>
+      <MapButton />
     </div>
   );
 };

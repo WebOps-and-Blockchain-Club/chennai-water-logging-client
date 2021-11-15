@@ -74,6 +74,13 @@ export type GetDatasQueryVariables = Exact<{
 
 export type GetDatasQuery = { getDatas: { count: number, datas: Array<{ location: string, image: string, depth: string }> } };
 
+export type GetDatasForMapQueryVariables = Exact<{
+  Password: Scalars['String'];
+}>;
+
+
+export type GetDatasForMapQuery = { getDatas: { count: number, datas: Array<{ location: string, depth: string, time: string, image: string }> } };
+
 export type AddDataMutationVariables = Exact<{
   location: Scalars['String'];
   depth: Scalars['String'];
@@ -169,6 +176,50 @@ export type GetDatasLazyQueryHookResult = ReturnType<typeof useGetDatasLazyQuery
 export type GetDatasQueryResult = ApolloReactCommon.QueryResult<GetDatasQuery, GetDatasQueryVariables>;
 export function refetchGetDatasQuery(variables?: GetDatasQueryVariables) {
       return { query: GetDatasDocument, variables: variables }
+    }
+export const GetDatasForMapDocument = gql`
+    query getDatasForMap($Password: String!) {
+  getDatas(Password: $Password) {
+    count
+    datas {
+      location
+      depth
+      time
+      image
+    }
+  }
+}
+    `;
+
+/**
+ * __useGetDatasForMapQuery__
+ *
+ * To run a query within a React component, call `useGetDatasForMapQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetDatasForMapQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetDatasForMapQuery({
+ *   variables: {
+ *      Password: // value for 'Password'
+ *   },
+ * });
+ */
+export function useGetDatasForMapQuery(baseOptions: ApolloReactHooks.QueryHookOptions<GetDatasForMapQuery, GetDatasForMapQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<GetDatasForMapQuery, GetDatasForMapQueryVariables>(GetDatasForMapDocument, options);
+      }
+export function useGetDatasForMapLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetDatasForMapQuery, GetDatasForMapQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<GetDatasForMapQuery, GetDatasForMapQueryVariables>(GetDatasForMapDocument, options);
+        }
+export type GetDatasForMapQueryHookResult = ReturnType<typeof useGetDatasForMapQuery>;
+export type GetDatasForMapLazyQueryHookResult = ReturnType<typeof useGetDatasForMapLazyQuery>;
+export type GetDatasForMapQueryResult = ApolloReactCommon.QueryResult<GetDatasForMapQuery, GetDatasForMapQueryVariables>;
+export function refetchGetDatasForMapQuery(variables?: GetDatasForMapQueryVariables) {
+      return { query: GetDatasForMapDocument, variables: variables }
     }
 export const AddDataDocument = gql`
     mutation addData($location: String!, $depth: String!, $image: Upload!) {

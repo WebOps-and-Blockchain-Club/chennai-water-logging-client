@@ -18,6 +18,18 @@ query getDatas($Password: String!, $skip: Float!, $limit: Float!) {
   }
 }
 
+query getDatasForMap($Password: String!) {
+  getDatas(Password: $Password) {
+    count
+    datas {
+      location
+      depth
+      time
+      image
+    }
+  }
+}
+
 mutation addData($location: String!, $depth: String!, $image: Upload!) {
   addData(location: $location, depth: $depth, image: $image)
 }

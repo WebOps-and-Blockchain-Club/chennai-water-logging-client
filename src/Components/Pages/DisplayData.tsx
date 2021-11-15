@@ -3,6 +3,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useGetDataByIdQuery } from "../../generated/graphql";
 import "../../Styles/displayData.css";
+import MapButton from "../MapButton";
 
 interface Probs {}
 
@@ -67,6 +68,7 @@ export const DisplayData = (probs: Probs) => {
           alt=""
         />
       </div>
+      <MapButton />
     </div>
   );
 };
