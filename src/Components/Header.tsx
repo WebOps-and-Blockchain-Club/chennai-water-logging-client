@@ -15,9 +15,19 @@ function Header() {
           justifyContent: "space-between",
         }}
       >
-        <img src={Logo} height={"40px"} style={{ paddingRight: "10px" }} />
+        <img
+          src={Logo}
+          alt="Chennai Water Logging"
+          height={"40px"}
+          style={{ paddingRight: "10px" }}
+        />
         CHENNAI WATER LOGGING
-        <img src={CFILogo} height={"30px"} style={{ paddingLeft: "10px" }} />
+        <img
+          src={CFILogo}
+          alt="CFI"
+          height={"30px"}
+          style={{ paddingLeft: "10px" }}
+        />
       </div>
       <div style={{ textAlign: "center", padding: "0 10px 10px" }}>
         An initiative by IIT Madras to create a real-time flood map that can
