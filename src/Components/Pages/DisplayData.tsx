@@ -42,7 +42,8 @@ export const DisplayData = (probs: Probs) => {
 
   return (
     <div className="main-div">
-      <div className="add-data">
+      <MapButton />
+      <div className="add-data" style={{ marginBottom: "25px" }}>
         <div className="heading" style={{ fontSize: "35px" }}>
           Your Data
         </div>
@@ -68,7 +69,6 @@ export const DisplayData = (probs: Probs) => {
           alt=""
         />
       </div>
-      <MapButton />
     </div>
   );
 };

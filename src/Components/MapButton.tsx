@@ -5,17 +5,21 @@ const MapButton = () => {
   const history = useHistory();
   const handleClick = () => history.push("/view");
   return (
-    <div style={{ position: "fixed", bottom: "50px", right: "20px" }}>
-      <button
-        onClick={handleClick}
-        style={{
-          borderRadius: "50%",
-          padding: "20px",
-        }}
-      >
-        &#x1F327;
-      </button>
-    </div>
+    <button
+      onClick={handleClick}
+      style={{
+        borderRadius: "10px",
+        backgroundColor: "#5ca1e1",
+        border: "none",
+        color: "#fff",
+        textAlign: "center",
+        padding: "8px 16px",
+        margin: "25px auto 0",
+        cursor: "pointer",
+      }}
+    >
+      View on Map
+    </button>
   );
 };
 

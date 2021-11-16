@@ -115,6 +115,7 @@ export const AddData = (probs: Probs) => {
 
   return (
     <div className="main-div">
+      <MapButton />
       <form onSubmit={handleSubmit} className="add-data">
         {/* <div className="heading" style={{ fontSize: "35px" }}>
           CHENNAI WATER LOGGING
@@ -189,7 +190,6 @@ export const AddData = (probs: Probs) => {
           action.
         </div>
       </div>
-      <MapButton />
     </div>
   );
 };
