@@ -3,8 +3,12 @@ import mapboxgl from "mapbox-gl";
 import { useGetDatasForMapQuery } from "../../generated/graphql";
 import moment from "moment";
 import "../../Styles/map.css";
+import 'mapbox-gl/dist/mapbox-gl.css';
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY!;
+// @ts-ignore
+// eslint-disable-next-line import/no-webpack-loader-syntax
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 export default function Mapp() {
   const mapContainer = useRef(null);
