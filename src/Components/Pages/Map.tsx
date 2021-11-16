@@ -53,7 +53,7 @@ export default function Mapp() {
             >
               <img src=${process.env.REACT_APP_BACKEND_URL}/images/${
                 _data.image
-              } height=200px />
+              } height=200px style=max-width:40vw;object-fit:cover; />
               <div style=padding-left:10px >
                 Updated at <br /> ${moment(parseInt(_data.time)).format(
                   "MMMM Do YYYY, h:mm a"
