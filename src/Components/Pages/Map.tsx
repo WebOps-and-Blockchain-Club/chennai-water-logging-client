@@ -45,7 +45,7 @@ export default function Mapp() {
       }) => {
         let location = JSON.parse(_data.location!);
         console.log(location.latitude);
-        new mapboxgl.Marker()
+        new mapboxgl.Marker({ color: colorCode(_data.depth) })
           .setLngLat([Number(location.longitude), Number(location.latitude)])
           .setPopup(
             new mapboxgl.Popup().setHTML(
@@ -79,3 +79,15 @@ export default function Mapp() {
     </div>
   );
 }
+
+const colorCode = (depth: string) => {
+  const depthInt = Number(depth.split(" cm")[0]);
+
+  if (depthInt < 5) return "#1AA9D0";
+  else if (depthInt < 35) return "#2488D5";
+  else if (depthInt < 75) return "#3669D5";
+  else if (depthInt < 150) return "#2140A3";
+  else if (depthInt < 180) return "#161F6F";
+
+  return "invalid";
+};
