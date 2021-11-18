@@ -54,6 +54,7 @@ export type QueryGetDataByIdArgs = {
 
 export type QueryGetDatasArgs = {
   Password: Scalars['String'];
+  TimeLimit?: Maybe<Scalars['Float']>;
   limit?: Maybe<Scalars['Float']>;
   skip?: Maybe<Scalars['Float']>;
 };
@@ -76,6 +77,7 @@ export type GetDatasQuery = { getDatas: { count: number, datas: Array<{ location
 
 export type GetDatasForMapQueryVariables = Exact<{
   Password: Scalars['String'];
+  timeLimit?: Maybe<Scalars['Float']>;
 }>;
 
 
@@ -178,8 +180,8 @@ export function refetchGetDatasQuery(variables?: GetDatasQueryVariables) {
       return { query: GetDatasDocument, variables: variables }
     }
 export const GetDatasForMapDocument = gql`
-    query getDatasForMap($Password: String!) {
-  getDatas(Password: $Password) {
+    query getDatasForMap($Password: String!, $timeLimit: Float) {
+  getDatas(Password: $Password, TimeLimit: $timeLimit) {
     count
     datas {
       location
@@ -204,6 +206,7 @@ export const GetDatasForMapDocument = gql`
  * const { data, loading, error } = useGetDatasForMapQuery({
  *   variables: {
  *      Password: // value for 'Password'
+ *      timeLimit: // value for 'timeLimit'
  *   },
  * });
  */

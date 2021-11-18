@@ -18,8 +18,8 @@ query getDatas($Password: String!, $skip: Float!, $limit: Float!) {
   }
 }
 
-query getDatasForMap($Password: String!) {
-  getDatas(Password: $Password) {
+query getDatasForMap($Password: String!, $timeLimit: Float) {
+  getDatas(Password: $Password, TimeLimit: $timeLimit) {
     count
     datas {
       location

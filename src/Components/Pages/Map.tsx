@@ -20,6 +20,7 @@ export default function Mapp() {
   const { data } = useGetDatasForMapQuery({
     variables: {
       Password: process.env.REACT_APP_SECRET!,
+      timeLimit: 48,
     },
   });
 
