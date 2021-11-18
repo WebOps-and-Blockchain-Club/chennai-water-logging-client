@@ -3,13 +3,14 @@ import mapboxgl from "mapbox-gl";
 import { useGetDatasForMapQuery } from "../../generated/graphql";
 import moment from "moment";
 import "../../Styles/map.css";
-import 'mapbox-gl/dist/mapbox-gl.css';
+import "mapbox-gl/dist/mapbox-gl.css";
 import Img from "../../assests/flooddepth.png";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY!;
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax
-mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
+mapboxgl.workerClass =
+  require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
 
 export default function Mapp() {
   const mapContainer = useRef(null);
@@ -71,19 +72,26 @@ export default function Mapp() {
   }, [data]);
 
   return (
-    <React.Fragment> 
-     <div style={{'position':'fixed','bottom':'50px','right':'0px','zIndex':1000,'backgroundColor':'white','textAlign':'right'}}>
-     <img src={Img} alt={"ScaleImage"}   style={{maxWidth: "70vw"}}/>
-     </div>
-    <div style={{ maxHeight: "calc(100vh - 150px)", overflow: "hidden" }}>
+    <React.Fragment>
       <div
-        ref={mapContainer}
-        className="map-container"
-        style={{ height: "100vh" }}
-      />
-      <div>
+        style={{
+          position: "fixed",
+          bottom: "50px",
+          right: "0px",
+          zIndex: 1000,
+          backgroundColor: "white",
+          textAlign: "right",
+        }}
+      >
+        <img src={Img} alt={"ScaleImage"} style={{ maxWidth: "70vw" }} />
       </div>
-    </div>
+      <div style={{ maxHeight: "calc(100vh - 150px)", overflow: "hidden" }}>
+        <div
+          ref={mapContainer}
+          className="map-container"
+          style={{ height: "100vh" }}
+        />
+      </div>
     </React.Fragment>
   );
 }
@@ -95,7 +103,7 @@ const colorCode = (depth: string) => {
   else if (depthInt < 35) return "#2488D5";
   else if (depthInt < 75) return "#3669D5";
   else if (depthInt < 150) return "#2140A3";
-  else if (depthInt < 180) return "#161F6F";
+  else if (depthInt <= 180) return "#161F6F";
 
   return "invalid";
 };
