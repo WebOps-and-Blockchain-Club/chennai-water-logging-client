@@ -9,8 +9,7 @@ import Img from "../../assests/flooddepth.png";
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY!;
 // @ts-ignore
 // eslint-disable-next-line import/no-webpack-loader-syntax
-mapboxgl.workerClass =
-  require("worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker").default;
+mapboxgl.workerClass = require('worker-loader!mapbox-gl/dist/mapbox-gl-csp-worker').default;
 
 export default function Mapp() {
   const mapContainer = useRef(null);
