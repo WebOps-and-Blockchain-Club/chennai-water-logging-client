@@ -161,7 +161,6 @@ export const AddData = (probs: Probs) => {
         <input
           type="file"
           accept="image/*"
-          capture="environment"
           onChange={handleImageUpload}
           required
         />
