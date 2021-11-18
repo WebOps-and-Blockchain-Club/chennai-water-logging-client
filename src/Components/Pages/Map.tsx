@@ -4,6 +4,7 @@ import { useGetDatasForMapQuery } from "../../generated/graphql";
 import moment from "moment";
 import "../../Styles/map.css";
 import 'mapbox-gl/dist/mapbox-gl.css';
+import Img from "../../assests/flooddepth.png";
 
 mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_KEY!;
 // @ts-ignore
@@ -70,13 +71,20 @@ export default function Mapp() {
   }, [data]);
 
   return (
+    <React.Fragment> 
+     <div style={{'position':'fixed','bottom':'50px','right':'0px','zIndex':1000,'backgroundColor':'white','textAlign':'right'}}>
+     <img src={Img} alt={"ScaleImage"}   style={{maxWidth: "70vw"}}/>
+     </div>
     <div style={{ maxHeight: "calc(100vh - 150px)", overflow: "hidden" }}>
       <div
         ref={mapContainer}
         className="map-container"
         style={{ height: "100vh" }}
       />
+      <div>
+      </div>
     </div>
+    </React.Fragment>
   );
 }
 
