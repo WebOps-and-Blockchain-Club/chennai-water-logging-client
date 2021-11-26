@@ -30,6 +30,10 @@ query getDatasForMap($Password: String!, $timeLimit: Float) {
   }
 }
 
+query getDataInCSV($Password: String!) {
+  getDataInCSV(Password: $Password)
+}
+
 mutation addData($location: String!, $depth: String!, $image: Upload!) {
   addData(location: $location, depth: $depth, image: $image)
 }

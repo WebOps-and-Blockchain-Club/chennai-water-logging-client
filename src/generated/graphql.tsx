@@ -43,12 +43,18 @@ export type MutationAddDataArgs = {
 
 export type Query = {
   getDataByID: FloodData;
+  getDataInCSV: Scalars['String'];
   getDatas: GetFloodDatasOutput;
 };
 
 
 export type QueryGetDataByIdArgs = {
   ID: Scalars['String'];
+};
+
+
+export type QueryGetDataInCsvArgs = {
+  Password: Scalars['String'];
 };
 
 
@@ -82,6 +88,13 @@ export type GetDatasForMapQueryVariables = Exact<{
 
 
 export type GetDatasForMapQuery = { getDatas: { count: number, datas: Array<{ location: string, depth: string, time: string, image: string }> } };
+
+export type GetDataInCsvQueryVariables = Exact<{
+  Password: Scalars['String'];
+}>;
+
+
+export type GetDataInCsvQuery = { getDataInCSV: string };
 
 export type AddDataMutationVariables = Exact<{
   location: Scalars['String'];
@@ -223,6 +236,42 @@ export type GetDatasForMapLazyQueryHookResult = ReturnType<typeof useGetDatasFor
 export type GetDatasForMapQueryResult = ApolloReactCommon.QueryResult<GetDatasForMapQuery, GetDatasForMapQueryVariables>;
 export function refetchGetDatasForMapQuery(variables?: GetDatasForMapQueryVariables) {
       return { query: GetDatasForMapDocument, variables: variables }
+    }
+export const GetDataInCsvDocument = gql`
+    query getDataInCSV($Password: String!) {
+  getDataInCSV(Password: $Password)
+}
+    `;
+
+/**
+ * __useGetDataInCsvQuery__
+ *
+ * To run a query within a React component, call `useGetDataInCsvQuery` and pass it any options that fit your needs.
+ * When your component renders, `useGetDataInCsvQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useGetDataInCsvQuery({
+ *   variables: {
+ *      Password: // value for 'Password'
+ *   },
+ * });
+ */
+export function useGetDataInCsvQuery(baseOptions: ApolloReactHooks.QueryHookOptions<GetDataInCsvQuery, GetDataInCsvQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return ApolloReactHooks.useQuery<GetDataInCsvQuery, GetDataInCsvQueryVariables>(GetDataInCsvDocument, options);
+      }
+export function useGetDataInCsvLazyQuery(baseOptions?: ApolloReactHooks.LazyQueryHookOptions<GetDataInCsvQuery, GetDataInCsvQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return ApolloReactHooks.useLazyQuery<GetDataInCsvQuery, GetDataInCsvQueryVariables>(GetDataInCsvDocument, options);
+        }
+export type GetDataInCsvQueryHookResult = ReturnType<typeof useGetDataInCsvQuery>;
+export type GetDataInCsvLazyQueryHookResult = ReturnType<typeof useGetDataInCsvLazyQuery>;
+export type GetDataInCsvQueryResult = ApolloReactCommon.QueryResult<GetDataInCsvQuery, GetDataInCsvQueryVariables>;
+export function refetchGetDataInCsvQuery(variables?: GetDataInCsvQueryVariables) {
+      return { query: GetDataInCsvDocument, variables: variables }
     }
 export const AddDataDocument = gql`
     mutation addData($location: String!, $depth: String!, $image: Upload!) {
