@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Redirect, Route } from "react-router-dom";
 import Footer from "./Components/Footer";
 import Header from "./Components/Header";
 import { AddData } from "./Components/Pages/AddData";
@@ -13,14 +13,15 @@ function App() {
     <Router>
       <Header />
       <Route exact path="/" component={AddData} />
-      <Route exact path="/data/:id" component={DisplayData} />
+      {/* <Route exact path="/data/:id" component={DisplayData} />
       <Route exact path="/view" component={Mapp} />
       <Route exact path="/dashboard">
         <PasswordForm />
       </Route>
       <Route exact path="/submissions">
         <Dashboard />
-      </Route>
+      </Route> */}
+      <Redirect to="/" />
       <Footer />
     </Router>
   );

@@ -115,11 +115,8 @@ export const AddData = (probs: Probs) => {
 
   return (
     <div className="main-div">
-      <MapButton />
+      {/* <MapButton />
       <form onSubmit={handleSubmit} className="add-data">
-        {/* <div className="heading" style={{ fontSize: "35px" }}>
-          CHENNAI WATER LOGGING
-        </div> */}
         <div className="heading" style={{ fontSize: "25px" }}>
           Fill the details here
         </div>
@@ -167,7 +164,7 @@ export const AddData = (probs: Probs) => {
         <button type="submit" className="submitButton">
           Submit
         </button>
-      </form>
+      </form> */}
       <div className="add-data" style={{ marginBottom: "25px" }}>
         <div className="heading" style={{ fontSize: "35px" }}>
           ABOUT US
